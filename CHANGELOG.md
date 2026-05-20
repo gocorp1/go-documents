@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.4] - 2026-05-19 — Safety: auto-commit drift guard + machine-local gitignore patterns
+
+Ported from `data-communications` v0.5.14 (go-access-gateway v0.6.9 lineage). Closes the loop on the 2026-05-17 OneDrive-de-sync class of incident.
+
+- `scripts/auto-commit-and-merge.sh` — new "Drift sanity check" section between the repo-mapping check and verify; hard-aborts on race / machine-fork / git-internals patterns (`DRIFT_RE`); skipped under `--paths`.
+- `.gitignore` — defense-in-depth Rule-5 patterns (`.claude/autocommit.opt-in[.*]`, `.claude/active-machine.*`, `.claude/scheduled_tasks.lock`, `.claude/autocommit.opt-out`, `.claude/session-state.*`, `.git-*.archived-*`, `.git.broken-*`, `.git-*.bak.*`, host-suffix race duplicates).
+- Removed working-tree Rule-5 violations: per-machine opt-in markers, `.git-NCORE100.bak.2026-05-08/` (archived git dir), and `cloudbuild-NCORE100.yaml` (an older, less-complete fork — tracked `cloudbuild.yaml` already has 3 more env vars).
+
 ## [1.3.3] - 2026-05-04
 
 ### Added — Signature Service workflow summary page

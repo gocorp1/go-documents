@@ -64,3 +64,26 @@ Thumbs.db
 .claude/worktrees/
 .claude/settings.json
 .claude/settings.local.json
+
+# Per-Rule-5 machine-local state — must NEVER be committed
+# (ported from data-communications v0.5.14 / go-access-gateway v0.6.9)
+.claude/autocommit.opt-in
+.claude/autocommit.opt-in.*
+.claude/active-machine.*
+.claude/scheduled_tasks.lock
+.claude/autocommit.opt-out
+.claude/session-state.*
+
+# Archived / corrupt / host-fork .git directories (Rule 5c)
+.git-*.archived-*
+.git.broken-*
+.git-*.bak.*
+.git-NUC9/
+
+# OneDrive multi-machine race-suffix duplicates (Rule 5h)
+-NCORE100.*
+-NUC9.*
+-LAPTOP.*
+*-NCORE100.*
+*-NUC9.*
+*-LAPTOP.*

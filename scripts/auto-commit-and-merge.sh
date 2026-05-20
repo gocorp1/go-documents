@@ -89,6 +89,45 @@ if [ -n "$REMOTE_NAME" ] && [ "$REMOTE_NAME" != "$PROJECT_NAME" ]; then
   exit 1
 fi
 
+# ---- Drift sanity check (Rule 5h — guard against OneDrive de-sync / race artifacts) ----
+#
+# Background: on 2026-05-17, this script ran from a stale OneDrive working tree
+# and silently committed 17 files of drift to main (commit e504a91 in
+# go-access-gateway), including git internals from an archived .git directory,
+# machine-fork-suffixed script duplicates (-NCORE100.*), and the per-machine
+# opt-in marker. The push reverted the entire sub_routes feature. Cloud Build
+# deployed before anyone noticed. Ported from data-communications v0.5.14
+# (go-access-gateway v0.6.9 lineage).
+#
+# Lesson: catch the obviously-wrong patterns at the gate. If the working tree
+# (tracked OR untracked) contains any of these, hard-abort. The user must
+# triage manually — these files should never reach a commit.
+#
+# Extend DRIFT_RE when new machines are bootstrapped (hostname suffix list).
+#
+# Scoped commits (--paths foo bar) skip this check: the caller has explicitly
+# constrained the file set, and the staging loop below already won't pick up
+# anything outside that list.
+if [ "$USE_PATHS" -eq 0 ]; then
+  DRIFT_RE='\.git-[^/]*\.archived[-/]|\.git\.broken-|(^|/|-|\.)(NCORE100|NUC9|LAPTOP)([\.-]|$)|\.claude/autocommit\.opt-in$|\.claude/autocommit\.opt-in\.|\.claude/active-machine\.'
+  DRIFT_FOUND=$(git status --porcelain | sed 's/^...//' | grep -E "$DRIFT_RE" || true)
+  if [ -n "$DRIFT_FOUND" ]; then
+    echo "[auto-commit] DRIFT ABORT — refusing to commit. Files matching known" >&2
+    echo "              race / machine-fork / git-internals patterns:" >&2
+    echo "$DRIFT_FOUND" | sed 's/^/                /' >&2
+    echo "" >&2
+    echo "[auto-commit] These usually mean OneDrive de-sync or another machine's" >&2
+    echo "              working tree leaked into yours (Rule 5h). To recover:" >&2
+    echo "                1. Identify legitimate vs accidental files above." >&2
+    echo "                2. Delete the accidental ones (e.g. .git-*.archived-*)." >&2
+    echo "                3. Re-run this script." >&2
+    echo "" >&2
+    echo "              If you genuinely must commit one of these patterns," >&2
+    echo "              use: ./scripts/auto-commit-and-merge.sh --paths <file>." >&2
+    exit 1
+  fi
+fi
+
 # ---- Verify (Rule 5 step 2) ----
 if [ -x "./scripts/verify.sh" ]; then
   echo "[auto-commit] running ./scripts/verify.sh ..."
