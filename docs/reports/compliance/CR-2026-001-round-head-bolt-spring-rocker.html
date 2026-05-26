@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compliance Review CR-2026-001 — Round-Head Bolt, Spring Rocker Handle Attachment — Leka Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #182557;
+    --purple: #8003FF;
+    --cream: #FFF9E6;
+    --magenta: #970260;
+    --amber: #FFA900;
+    --red-orange: #E54822;
+    --white: #FFFFFF;
+    --light-gray: #F5F5F7;
+    --mid-gray: #E0E0E6;
+    --pass: #2C8C3D;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page { size: A4; margin: 0; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    color: var(--navy);
+    background: var(--white);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .doc {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    background: var(--white);
+  }
+
+  /* Top + bottom accent bars */
+  .top-bar, .bottom-bar {
+    height: 8px;
+    background: linear-gradient(90deg, var(--purple) 0%, var(--magenta) 25%, var(--red-orange) 50%, var(--amber) 75%, var(--purple) 100%);
+  }
+  .bottom-bar {
+    height: 6px;
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+  }
+
+  /* Header */
+  .header {
+    background: var(--navy);
+    padding: 28px 48px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header .logo svg { height: 36px; width: auto; }
+  .header .brand-text {
+    color: var(--cream);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  /* Title */
+  .title-section {
+    padding: 28px 48px 18px;
+    border-bottom: 3px solid var(--purple);
+    margin: 0 48px;
+    text-align: center;
+  }
+  .title-section h1 {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .title-section .subtitle {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--purple);
+    letter-spacing: 0.5px;
+  }
+
+  /* Body */
+  .body { padding: 24px 48px 40px; }
+
+  /* Field grid */
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: 18px;
+  }
+  .field { padding: 8px 0; border-bottom: 1px solid var(--mid-gray); }
+  .field-grid > .field:nth-child(odd) { padding-right: 20px; }
+  .field-grid > .field:nth-child(even) {
+    padding-left: 20px;
+    border-left: 1px solid var(--mid-gray);
+  }
+  .field-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--purple);
+    margin-bottom: 3px;
+  }
+  .field-value {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--navy);
+    min-height: 16px;
+  }
+
+  /* Section heading */
+  .section { margin-bottom: 18px; }
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--navy);
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--purple);
+    margin-bottom: 10px;
+  }
+  .section-body {
+    font-size: 11.5px;
+    line-height: 1.65;
+    color: var(--navy);
+  }
+  .section-body p { margin-bottom: 8px; }
+
+  /* Verdict callout */
+  .verdict {
+    display: flex;
+    align-items: stretch;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    border: 1px solid var(--mid-gray);
+  }
+  .verdict .verdict-flag {
+    background: var(--pass);
+    color: var(--white);
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 168px;
+  }
+  .verdict.conditional .verdict-flag { background: var(--amber); color: var(--navy); }
+  .verdict.fail .verdict-flag       { background: var(--red-orange); color: var(--white); }
+  .verdict .verdict-flag .v-tag {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 4px;
+    opacity: 0.85;
+  }
+  .verdict .verdict-flag .v-label {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .verdict .verdict-body {
+    padding: 14px 18px;
+    background: var(--cream);
+    flex: 1;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: var(--navy);
+  }
+
+  /* Clause-by-clause table */
+  table.clauses {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10.5px;
+    line-height: 1.5;
+  }
+  table.clauses thead th {
+    background: var(--navy);
+    color: var(--cream);
+    text-align: left;
+    padding: 8px 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-size: 9px;
+  }
+  table.clauses tbody td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--mid-gray);
+    vertical-align: top;
+  }
+  table.clauses tbody tr:nth-child(even) td { background: var(--light-gray); }
+  table.clauses td.c-status {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  td.c-pass    { color: var(--pass); }
+  td.c-cond    { color: var(--amber); }
+  td.c-na      { color: #888; }
+  td.c-fail    { color: var(--red-orange); }
+
+  /* Photo */
+  .photo-block {
+    margin: 12px 0 18px;
+    border: 1px solid var(--mid-gray);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--light-gray);
+  }
+  .photo-block .photo-caption {
+    padding: 8px 12px;
+    background: var(--navy);
+    color: var(--cream);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .photo-block img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .photo-block .photo-placeholder {
+    padding: 56px 24px;
+    text-align: center;
+    color: #888;
+    font-size: 11px;
+    font-style: italic;
+    background: repeating-linear-gradient(45deg, var(--light-gray), var(--light-gray) 12px, var(--mid-gray) 12px, var(--mid-gray) 13px);
+  }
+
+  /* Bullets */
+  ul.tight {
+    margin: 4px 0 0 18px;
+    padding: 0;
+    font-size: 11px;
+    line-height: 1.55;
+    color: var(--navy);
+  }
+  ul.tight li { margin-bottom: 4px; }
+
+  /* Reference list */
+  .ref-list { list-style: none; padding: 0; }
+  .ref-list li {
+    font-size: 10.5px;
+    padding: 4px 0;
+    border-bottom: 1px dotted var(--mid-gray);
+    display: flex;
+    justify-content: space-between;
+  }
+  .ref-list li span.ref-label { font-weight: 600; color: var(--navy); }
+  .ref-list li span.ref-value { color: #777; font-style: italic; text-align: right; }
+
+  /* Inspector block */
+  .inspector-block {
+    background: var(--cream);
+    padding: 14px 18px;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 28px;
+    margin-bottom: 16px;
+  }
+  .inspector-block .insp-field { display: flex; flex-direction: column; }
+  .inspector-block .insp-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--purple);
+    margin-bottom: 2px;
+  }
+  .inspector-block .insp-value {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  /* Signature */
+  .signature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+  .sig-box { text-align: center; }
+  .sig-line { border-bottom: 2px solid var(--navy); height: 42px; margin-bottom: 4px; }
+  .sig-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--purple);
+  }
+
+  /* Limitations */
+  .limitations {
+    font-size: 8.5px;
+    line-height: 1.55;
+    color: #666;
+    padding: 12px 14px;
+    border: 1px solid var(--mid-gray);
+    border-radius: 4px;
+    background: var(--light-gray);
+    margin-top: 12px;
+  }
+  .limitations .lim-title {
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  /* Page break for the photo evidence + remediation page */
+  .page-break { page-break-before: always; }
+
+  /* Print */
+  @media print {
+    body { background: white; }
+    .doc { margin: 0; box-shadow: none; }
+    .no-print { display: none; }
+  }
+  @media screen {
+    body { background: #e0e0e0; padding: 20px; }
+    .doc {
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      margin-bottom: 40px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- =========================== PAGE 1: VERDICT + CLAUSES =========================== -->
+<div class="doc">
+
+  <div class="top-bar"></div>
+
+  <div class="header">
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 598.32 101.73" height="36">
+        <defs><style>.lsa1{fill:#970260}.lsa2{fill:#FFF9E6}.lsa3{fill:#8003ff}.lsa4{fill:#e54822}.lsa5{fill:#ffa900}</style></defs>
+        <path class="lsa3" d="m11.31,41.11l2.98.26c.87.08,1.64-.57,1.73-1.44.85-8.27,2.52-14.7,4.73-18.59-4.81,5.24-8.35,11.66-10.15,18.78-.12.47.22.94.71.99Z"/>
+        <path class="lsa3" d="m66.48,42.61l6.35-5c1.9-1.49,2.17-4.27.6-6.1-3.08-3.58-8.41-9.47-14.79-15.12-3.52-3.12-6.94-5.78-10.24-7.99-.81-.54-1.8-.76-2.76-.6-7.76,1.3-14.83,4.64-20.62,9.46,7.92-2.3,24.79,12.07,35.61,24.78,1.47,1.73,4.06,1.97,5.84.57Z"/>
+        <path class="lsa1" d="m44.11,43.16c1.73-1.47,1.97-4.06.56-5.85l-2.56-3.25-2.44-3.1c-1.49-1.9-4.27-2.18-6.1-.6-3.58,3.08-9.47,8.41-15.12,14.79-3.12,3.52-5.78,6.94-7.99,10.24-.54.81-.76,1.8-.6,2.76,1.3,7.76,4.64,14.83,9.46,20.62-2.3-7.91,12.07-24.79,24.78-35.61Z"/>
+        <path class="lsa1" d="m23.41,83.04c5.24,4.81,11.66,8.35,18.78,10.15.47.12.94-.22.99-.71l.26-2.98c.08-.87-.57-1.64-1.44-1.73-8.27-.85-14.7-2.52-18.59-4.73Z"/>
+        <path class="lsa4" d="m47.21,85.34c3.53,3.12,6.94,5.78,10.25,7.99.81.54,1.8.76,2.76.6,7.76-1.3,14.82-4.64,20.62-9.46-7.91,2.31-24.79-12.07-35.61-24.78-1.47-1.73-4.06-1.97-5.85-.56l-3.25,2.56-3.1,2.44c-1.9,1.49-2.18,4.27-.6,6.1,3.08,3.58,8.41,9.47,14.78,15.12Z"/>
+        <path class="lsa4" d="m89.85,61.79c-.85,8.27-2.52,14.7-4.74,18.6,4.81-5.24,8.35-11.67,10.15-18.78.12-.47-.22-.94-.71-.99l-2.98-.26c-.87-.08-1.64.57-1.73,1.44Z"/>
+        <path class="lsa5" d="m82.46,18.68c-5.24-4.81-11.67-8.35-18.78-10.15-.47-.12-.94.22-.99.71l-.26,2.98c-.08.87.57,1.64,1.44,1.73,8.27.85,14.7,2.52,18.6,4.74Z"/>
+        <path class="lsa5" d="m61.75,58.57c-1.73,1.47-1.97,4.06-.56,5.85l2.55,3.23,2.45,3.12c1.49,1.9,4.27,2.18,6.1.6,3.58-3.08,9.47-8.41,15.12-14.79,3.12-3.52,5.78-6.94,7.99-10.24.54-.81.76-1.8.6-2.76-1.3-7.76-4.64-14.83-9.46-20.62,2.31,7.91-12.07,24.79-24.78,35.61Z"/>
+        <path class="lsa2" d="m157.37,75.93c-5.74,0-8.77-3.06-8.77-8.86V15.35h-10.27v52.52c0,11.04,6.69,17.62,17.89,17.62,1.41,0,3.41-.11,4.93-.61l1.09-.36v-9.52l-2.01.55c-.97.26-1.88.39-2.86.39Z"/>
+        <path class="lsa2" d="m187.58,34.92c-14.54,0-25.51,11.04-25.51,25.69s11,25.77,25.6,25.77c8.3,0,15.2-3.38,19.97-9.76l.82-1.09-6.38-6.51-1.12,1.4c-3.4,4.25-7.84,6.4-13.19,6.4-7.4,0-13.01-4.46-14.73-11.52h38.19l.17-1.4c.1-.8.19-2.37.19-3.3,0-14.88-10.09-25.69-24-25.69Zm-.09,9.47c7.21,0,12.51,4.63,13.64,11.7h-28.13c1.63-7.17,7.15-11.7,14.49-11.7Z"/>
+        <path class="lsa2" d="m256.31,43.07c0-2.14-.08-3.63-.28-5.32l-.17-1.41h-10.43l.26,1.82c.24,1.66.34,3.1.34,4.82,0,8.28-5.17,13.02-14.17,13.02-1.1,0-2.11,0-3.01-.04V15.35h-10.27v69.62h10.27v-19.51c1.05.07,2.21.11,3.28.11,1.55,0,3.03-.12,4.37-.25l11.46,19.65h11.94l-13.51-22.86c6.33-3.77,9.92-10.61,9.92-19.04Z"/>
+        <path class="lsa2" d="m302.38,40.96c-3.35-3.4-8.79-6.03-15.95-6.03-14.73,0-25.42,10.8-25.42,25.69s10.38,25.77,25.26,25.77c6.64-.07,12.45-2.52,16.11-6.55v5.13h9.83v-48.62h-9.83v4.62Zm-.18,19.65c0,9.39-6.52,16.21-15.5,16.21s-15.33-6.97-15.33-16.21,6.45-16.21,15.33-16.21,15.5,6.67,15.5,16.21Z"/>
+        <path class="lsa2" d="m326.65,73.54c-3.32,0-6.02,2.7-6.02,6.02s2.7,6.02,6.02,6.02,6.02-2.7,6.02-6.02-2.7-6.02-6.02-6.02Z"/>
+        <path class="lsa2" d="m354.82,44.13c3.89,0,7,2.28,8.33,6.11l.62,1.78,8.17-4.49-.47-1.29c-2.66-7.19-8.79-11.32-16.82-11.32-8.99,0-15.76,6.02-15.76,13.99s5.49,11.85,10.85,14.29l5.59,2.57c4.96,2.24,5.97,4.02,5.97,5.99,0,4.72-4.46,5.23-6.38,5.23-5.33,0-8.53-3.84-9.25-7.4l-.42-2.11-8.54,4.61.26,1.17c1.77,7.97,8.64,13.12,17.5,13.12,10.22,0,17.09-5.87,17.09-14.61s-5.75-12.02-10.76-14.29l-6.02-2.75c-4.9-2.26-5.8-3.76-5.8-5.9,0-2.81,2.35-4.7,5.85-4.7Z"/>
+        <path class="lsa2" d="m390.34,24.2h-10.27v12.14h-5.49v9.38h5.49v22.41c0,11.26,6.46,17.71,17.71,17.71,2.05,0,4.14-.36,5.73-1l1-.4v-9.6l-2.16.83c-.89.34-2.06.51-3.5.51-5.64,0-8.51-2.95-8.51-8.77v-21.7h15.24v-9.38h-15.24v-12.14Z"/>
+        <path class="lsa2" d="m440.39,66.54c0,6.15-3.99,10.28-9.92,10.28s-9.92-4.23-9.92-10.28v-30.2h-10.27v30.11c0,11.55,8.49,19.93,20.19,19.93s20.19-8.12,20.19-19.75v-30.29h-10.27v30.2Z"/>
+        <path class="lsa2" d="m498.5,40.15c0,.14,0,.28,0,.42-3.76-3.48-9.61-5.64-15.86-5.64-14.81,0-25.15,10.56-25.15,25.69s10.31,25.77,25.07,25.77c6.76,0,12.56-2.34,16.39-6.45v5.03h9.74V15.35h-10.18v24.8Zm.27,20.46c0,9.34-6.48,16.12-15.41,16.12s-15.41-6.78-15.41-16.12,6.48-16.21,15.41-16.21,15.41,6.82,15.41,16.21Z"/>
+        <rect class="lsa2" x="519.59" y="36.34" width="10.27" height="48.62"/>
+        <path class="lsa2" d="m524.72,18.8c-3.43,0-6.11,2.64-6.11,6.02s2.63,6.2,6.11,6.2,6.11-2.72,6.11-6.2-2.74-6.02-6.11-6.02Z"/>
+        <path class="lsa2" d="m562.9,34.92c-14.59,0-25.6,11.04-25.6,25.69s11,25.77,25.6,25.77,25.6-11.08,25.6-25.77-11-25.69-25.6-25.69Zm0,41.9c-8.78,0-15.15-6.82-15.15-16.21s6.37-16.21,15.15-16.21,15.24,6.82,15.24,16.21-6.41,16.21-15.24,16.21Z"/>
+      </svg>
+    </div>
+    <div class="brand-text">
+      Playground Safety Division<br>
+      Compliance Review<br>
+      www.leka.studio
+    </div>
+  </div>
+
+  <div class="title-section">
+    <h1>Component Compliance Review</h1>
+    <div class="subtitle">Round-Head Bolt &mdash; Spring Rocker Handle Attachment &mdash; Rev. R1</div>
+  </div>
+
+  <div class="body">
+
+    <!-- Identification grid -->
+    <div class="field-grid">
+      <div class="field">
+        <div class="field-label">Review Reference</div>
+        <div class="field-value">CR-2026-001</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Issue Date</div>
+        <div class="field-value">2026-05-26</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Component</div>
+        <div class="field-value">Spring Rocker &mdash; Handgrip Attachment Fastener</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Fastener Type</div>
+        <div class="field-value">Round-head (button-head) machine screw, exposed</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Equipment Category</div>
+        <div class="field-value">Public Spring Rocking Equipment (F1487 &sect;8.11)</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Intended Age Group</div>
+        <div class="field-value">2&ndash;5 years (preschool)</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Governing Standards</div>
+        <div class="field-value">ASTM F1487-17; CPSC Pub. #325; LEKA-STD-PLAY-001 v1.0</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Review Type</div>
+        <div class="field-value">Photographic, design-level &mdash; subject to in-field verification</div>
+      </div>
+    </div>
+
+    <!-- Verdict -->
+    <div class="section">
+      <div class="section-title">Verdict</div>
+      <div class="verdict conditional">
+        <div class="verdict-flag">
+          <div class="v-tag">Outcome</div>
+          <div class="v-label">Conditional<br>Pass</div>
+        </div>
+        <div class="verdict-body">
+          The visible round-head fastener configuration is a recognised compliant design under
+          ASTM F1487-17 &sect;6.2.1, &sect;6.2.4, &sect;6.3, and &sect;8.11.2 <strong>provided</strong> that
+          (a) every fastener head, when the rubber/plastic protective cap is fully seated, does not extend
+          beyond the face of any of the three projection test gauges (1.25&nbsp;in., 2.0&nbsp;in., and
+          3.5&nbsp;in. OD &mdash; F1487 Fig.&nbsp;A1.10), (b) no cap is displaced or missing, and
+          (c) no metal head, shoulder, or thread is accessible to a user.
+          <strong>One cap in the field photograph appears partially displaced</strong> &mdash; see Finding F-2.
+          Pass is conditional on remedial actions R-1 &amp; R-2 (page&nbsp;2).
+        </div>
+      </div>
+    </div>
+
+    <!-- Clause-by-clause -->
+    <div class="section">
+      <div class="section-title">Clause-by-Clause Analysis</div>
+      <table class="clauses">
+        <thead>
+          <tr>
+            <th style="width: 22%;">Clause</th>
+            <th style="width: 38%;">Requirement</th>
+            <th style="width: 28%;">Observation</th>
+            <th style="width: 12%;">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>F1487 &sect;6.1.2</strong><br>Materials &amp; workmanship</td>
+            <td>All accessible parts free of burrs, sharp edges, and finish defects; corrosion-resistant.</td>
+            <td>Head is stainless-finish, smooth, no burrs visible. Wood-screw / lag-bolt patterns not used.</td>
+            <td class="c-status c-pass">Pass</td>
+          </tr>
+          <tr>
+            <td><strong>F1487 &sect;6.2.1</strong><br>Sharp points, edges, corners</td>
+            <td>No accessible sharp points, edges, or corners on any component.</td>
+            <td>Domed (round / button) head profile is inherently free of points and edges. Cap, when seated, presents a continuous rounded surface.</td>
+            <td class="c-status c-pass">Pass</td>
+          </tr>
+          <tr>
+            <td><strong>F1487 &sect;6.2.4</strong><br>Cut-off bolt end</td>
+            <td>Any cut-off bolt end projecting beyond the face of the nut shall be free of burrs, sharp points, and sharp edges.</td>
+            <td>Not applicable &mdash; the exposed feature is the bolt <em>head</em>, not a cut thread tail. Threaded shank is captured inside the steel handle foot / blind tap and is not visible.</td>
+            <td class="c-status c-na">N/A</td>
+          </tr>
+          <tr>
+            <td><strong>F1487 &sect;6.3.1&ndash;6.3.2</strong><br>Protrusion (projection gauge test)</td>
+            <td>Successively place each of three gauges (1.25&nbsp;in., 2.0&nbsp;in., 3.5&nbsp;in. OD, Fig.&nbsp;A1.10) over each accessible projection in all orientations. The projection fails if it extends beyond the face of any of the three gauges (&sect;6.3.2).</td>
+            <td>Head + cap appear to seat flush with the surrounding green panel. Estimated combined protrusion above panel face &approx; 8&ndash;12&nbsp;mm, well inside the recess depth of the 1.25&nbsp;in. gauge (32&nbsp;mm OD &times; nominal &gt;15&nbsp;mm depth). <strong>Final pass/fail requires in-field gauge test.</strong></td>
+            <td class="c-status c-cond">Verify</td>
+          </tr>
+          <tr>
+            <td><strong>F1487 &sect;6.4.3</strong><br>Exposed bolt-end projection</td>
+            <td>Any accessible bolt end projecting beyond the face of the nut more than <strong>two full threads</strong> is an entanglement hazard.</td>
+            <td>Not applicable &mdash; no threaded end is exposed on this face. Rule governs the opposite face (the nut side); inspect rear of green panel separately.</td>
+            <td class="c-status c-na">N/A</td>
+          </tr>
+          <tr>
+            <td><strong>F1487 &sect;6.4.4</strong><br>Projections that increase in size (mushroom rule)</td>
+            <td>Any projection that fits within any of the three projection gauges and whose size increases &gt;0.12&nbsp;in. (3.0&nbsp;mm) from the initial surface with a depth &gt;0.12&nbsp;in. (3.0&nbsp;mm) is an entanglement hazard.</td>
+            <td>Round-head + cap profile is monotonic-tapered (head is widest at the panel face, narrows toward the apex). No undercut or shoulder visible. Cap-to-panel interface tight.</td>
+            <td class="c-status c-pass">Pass</td>
+          </tr>
+          <tr>
+            <td><strong>F1487 &sect;6.4.5</strong><br>Connecting devices (S/C-hooks)</td>
+            <td>Closed connectors with gap &le; 0.04&nbsp;in. (1.0&nbsp;mm).</td>
+            <td>Not applicable &mdash; threaded fastener, not a chain/connector link.</td>
+            <td class="c-status c-na">N/A</td>
+          </tr>
+          <tr>
+            <td><strong>F1487 &sect;7.2.6.4</strong><br>Hand-gripping component (geometry)</td>
+            <td>Hand-gripping diameters and lengths per equipment-specific clauses.</td>
+            <td>The grip itself is a rubber-overmoulded U-bar attached by the fasteners under review. Grip geometry not the subject of this review but is referenced for context.</td>
+            <td class="c-status c-na">Out of scope</td>
+          </tr>
+          <tr>
+            <td><strong>F1487 &sect;8.11.2</strong><br>Spring rocker handgrip</td>
+            <td>Each seating position shall have handgrip(s) that comply with the general protrusion requirements (&sect;6.3) and hand-gripping requirements (&sect;7.2.6.4). One-hand grip &ge; 3.0&nbsp;in. (76&nbsp;mm); two-hand &ge; 6.0&nbsp;in. (152&nbsp;mm).</td>
+            <td>Handle assembly (including its fasteners) is bound by &sect;6.3. Bolt heads under review are part of this assembly. Compliance hinges on the projection gauge result in row above.</td>
+            <td class="c-status c-cond">Verify</td>
+          </tr>
+          <tr>
+            <td><strong>F1487 &sect;13.1</strong><br>Maintenance</td>
+            <td>Manufacturer maintenance procedures shall be followed; loose or missing parts replaced.</td>
+            <td>Cap retention is a maintenance item &mdash; see Finding F-2.</td>
+            <td class="c-status c-cond">Action</td>
+          </tr>
+          <tr>
+            <td><strong>CPSC #325 &sect;5.3.5.2</strong><br>Hardware (owner guidance)</td>
+            <td>Bolts, nuts, screws, and other fasteners that may be reached during play should not have sharp points, sharp edges, or burrs; rivets and bolts should be flush with the surface or covered with caps.</td>
+            <td>Design uses domed head + protective cap &mdash; consistent with CPSC guidance. Cap displacement (F-2) defeats this provision until corrected.</td>
+            <td class="c-status c-cond">Verify</td>
+          </tr>
+          <tr>
+            <td><strong>LEKA-STD-PLAY-001 &sect;5.3</strong></td>
+            <td>Three-gauge protrusion test is the controlling Leka requirement, regardless of CPSC owner guidance.</td>
+            <td>Aligned. Pending in-field test.</td>
+            <td class="c-status c-cond">Verify</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="bottom-bar"></div>
+</div>
+
+<!-- =========================== PAGE 2: EVIDENCE + FINDINGS + REMEDIATION =========================== -->
+<div class="doc page-break">
+
+  <div class="top-bar"></div>
+
+  <div class="header">
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 598.32 101.73" height="36">
+        <defs><style>.lsb1{fill:#970260}.lsb2{fill:#FFF9E6}.lsb3{fill:#8003ff}.lsb4{fill:#e54822}.lsb5{fill:#ffa900}</style></defs>
+        <path class="lsb3" d="m11.31,41.11l2.98.26c.87.08,1.64-.57,1.73-1.44.85-8.27,2.52-14.7,4.73-18.59-4.81,5.24-8.35,11.66-10.15,18.78-.12.47.22.94.71.99Z"/>
+        <path class="lsb3" d="m66.48,42.61l6.35-5c1.9-1.49,2.17-4.27.6-6.1-3.08-3.58-8.41-9.47-14.79-15.12-3.52-3.12-6.94-5.78-10.24-7.99-.81-.54-1.8-.76-2.76-.6-7.76,1.3-14.83,4.64-20.62,9.46,7.92-2.3,24.79,12.07,35.61,24.78,1.47,1.73,4.06,1.97,5.84.57Z"/>
+        <path class="lsb1" d="m44.11,43.16c1.73-1.47,1.97-4.06.56-5.85l-2.56-3.25-2.44-3.1c-1.49-1.9-4.27-2.18-6.1-.6-3.58,3.08-9.47,8.41-15.12,14.79-3.12,3.52-5.78,6.94-7.99,10.24-.54.81-.76,1.8-.6,2.76,1.3,7.76,4.64,14.83,9.46,20.62-2.3-7.91,12.07-24.79,24.78-35.61Z"/>
+        <path class="lsb1" d="m23.41,83.04c5.24,4.81,11.66,8.35,18.78,10.15.47.12.94-.22.99-.71l.26-2.98c.08-.87-.57-1.64-1.44-1.73-8.27-.85-14.7-2.52-18.59-4.73Z"/>
+        <path class="lsb4" d="m47.21,85.34c3.53,3.12,6.94,5.78,10.25,7.99.81.54,1.8.76,2.76.6,7.76-1.3,14.82-4.64,20.62-9.46-7.91,2.31-24.79-12.07-35.61-24.78-1.47-1.73-4.06-1.97-5.85-.56l-3.25,2.56-3.1,2.44c-1.9,1.49-2.18,4.27-.6,6.1,3.08,3.58,8.41,9.47,14.78,15.12Z"/>
+        <path class="lsb4" d="m89.85,61.79c-.85,8.27-2.52,14.7-4.74,18.6,4.81-5.24,8.35-11.67,10.15-18.78.12-.47-.22-.94-.71-.99l-2.98-.26c-.87-.08-1.64.57-1.73,1.44Z"/>
+        <path class="lsb5" d="m82.46,18.68c-5.24-4.81-11.67-8.35-18.78-10.15-.47-.12-.94.22-.99.71l-.26,2.98c-.08.87.57,1.64,1.44,1.73,8.27.85,14.7,2.52,18.6,4.74Z"/>
+        <path class="lsb5" d="m61.75,58.57c-1.73,1.47-1.97,4.06-.56,5.85l2.55,3.23,2.45,3.12c1.49,1.9,4.27,2.18,6.1.6,3.58-3.08,9.47-8.41,15.12-14.79,3.12-3.52,5.78-6.94,7.99-10.24.54-.81.76-1.8.6-2.76-1.3-7.76-4.64-14.83-9.46-20.62,2.31,7.91-12.07,24.79-24.78,35.61Z"/>
+        <path class="lsb2" d="m157.37,75.93c-5.74,0-8.77-3.06-8.77-8.86V15.35h-10.27v52.52c0,11.04,6.69,17.62,17.89,17.62,1.41,0,3.41-.11,4.93-.61l1.09-.36v-9.52l-2.01.55c-.97.26-1.88.39-2.86.39Z"/>
+        <path class="lsb2" d="m187.58,34.92c-14.54,0-25.51,11.04-25.51,25.69s11,25.77,25.6,25.77c8.3,0,15.2-3.38,19.97-9.76l.82-1.09-6.38-6.51-1.12,1.4c-3.4,4.25-7.84,6.4-13.19,6.4-7.4,0-13.01-4.46-14.73-11.52h38.19l.17-1.4c.1-.8.19-2.37.19-3.3,0-14.88-10.09-25.69-24-25.69Zm-.09,9.47c7.21,0,12.51,4.63,13.64,11.7h-28.13c1.63-7.17,7.15-11.7,14.49-11.7Z"/>
+        <path class="lsb2" d="m256.31,43.07c0-2.14-.08-3.63-.28-5.32l-.17-1.41h-10.43l.26,1.82c.24,1.66.34,3.1.34,4.82,0,8.28-5.17,13.02-14.17,13.02-1.1,0-2.11,0-3.01-.04V15.35h-10.27v69.62h10.27v-19.51c1.05.07,2.21.11,3.28.11,1.55,0,3.03-.12,4.37-.25l11.46,19.65h11.94l-13.51-22.86c6.33-3.77,9.92-10.61,9.92-19.04Z"/>
+        <path class="lsb2" d="m302.38,40.96c-3.35-3.4-8.79-6.03-15.95-6.03-14.73,0-25.42,10.8-25.42,25.69s10.38,25.77,25.26,25.77c6.64-.07,12.45-2.52,16.11-6.55v5.13h9.83v-48.62h-9.83v4.62Zm-.18,19.65c0,9.39-6.52,16.21-15.5,16.21s-15.33-6.97-15.33-16.21,6.45-16.21,15.33-16.21,15.5,6.67,15.5,16.21Z"/>
+        <path class="lsb2" d="m326.65,73.54c-3.32,0-6.02,2.7-6.02,6.02s2.7,6.02,6.02,6.02,6.02-2.7,6.02-6.02-2.7-6.02-6.02-6.02Z"/>
+        <path class="lsb2" d="m354.82,44.13c3.89,0,7,2.28,8.33,6.11l.62,1.78,8.17-4.49-.47-1.29c-2.66-7.19-8.79-11.32-16.82-11.32-8.99,0-15.76,6.02-15.76,13.99s5.49,11.85,10.85,14.29l5.59,2.57c4.96,2.24,5.97,4.02,5.97,5.99,0,4.72-4.46,5.23-6.38,5.23-5.33,0-8.53-3.84-9.25-7.4l-.42-2.11-8.54,4.61.26,1.17c1.77,7.97,8.64,13.12,17.5,13.12,10.22,0,17.09-5.87,17.09-14.61s-5.75-12.02-10.76-14.29l-6.02-2.75c-4.9-2.26-5.8-3.76-5.8-5.9,0-2.81,2.35-4.7,5.85-4.7Z"/>
+        <path class="lsb2" d="m390.34,24.2h-10.27v12.14h-5.49v9.38h5.49v22.41c0,11.26,6.46,17.71,17.71,17.71,2.05,0,4.14-.36,5.73-1l1-.4v-9.6l-2.16.83c-.89.34-2.06.51-3.5.51-5.64,0-8.51-2.95-8.51-8.77v-21.7h15.24v-9.38h-15.24v-12.14Z"/>
+        <path class="lsb2" d="m440.39,66.54c0,6.15-3.99,10.28-9.92,10.28s-9.92-4.23-9.92-10.28v-30.2h-10.27v30.11c0,11.55,8.49,19.93,20.19,19.93s20.19-8.12,20.19-19.75v-30.29h-10.27v30.2Z"/>
+        <path class="lsb2" d="m498.5,40.15c0,.14,0,.28,0,.42-3.76-3.48-9.61-5.64-15.86-5.64-14.81,0-25.15,10.56-25.15,25.69s10.31,25.77,25.07,25.77c6.76,0,12.56-2.34,16.39-6.45v5.03h9.74V15.35h-10.18v24.8Zm.27,20.46c0,9.34-6.48,16.12-15.41,16.12s-15.41-6.78-15.41-16.12,6.48-16.21,15.41-16.21,15.41,6.82,15.41,16.21Z"/>
+        <rect class="lsb2" x="519.59" y="36.34" width="10.27" height="48.62"/>
+        <path class="lsb2" d="m524.72,18.8c-3.43,0-6.11,2.64-6.11,6.02s2.63,6.2,6.11,6.2,6.11-2.72,6.11-6.2-2.74-6.02-6.11-6.02Z"/>
+        <path class="lsb2" d="m562.9,34.92c-14.59,0-25.6,11.04-25.6,25.69s11,25.77,25.6,25.77,25.6-11.08,25.6-25.77-11-25.69-25.6-25.69Zm0,41.9c-8.78,0-15.15-6.82-15.15-16.21s6.37-16.21,15.15-16.21,15.24,6.82,15.24,16.21-6.41,16.21-15.24,16.21Z"/>
+      </svg>
+    </div>
+    <div class="brand-text">
+      Compliance Review CR-2026-001<br>
+      Evidence &amp; Remediation<br>
+      Page 2 of 2
+    </div>
+  </div>
+
+  <div class="title-section">
+    <h1>Photographic Evidence, Findings &amp; Remediation</h1>
+    <div class="subtitle">Round-Head Bolt &mdash; Spring Rocker Handle Attachment</div>
+  </div>
+
+  <div class="body">
+
+    <!-- Photo -->
+    <div class="section">
+      <div class="section-title">Submitted Evidence</div>
+      <div class="photo-block">
+        <div class="photo-caption">Photo 01 &mdash; Spring rocker (preschool, green frog form). Red overlays indicate the two round-head fasteners under review. EPDM rubber surfacing visible.</div>
+        <img src="../../../images/findings/CR-2026-001-spring-rocker-bolt.jpg" alt="Spring rocker handle attachment — round-head fasteners highlighted"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="photo-placeholder" style="display:none;">
+          [Place the source photograph at <strong>images/findings/CR-2026-001-spring-rocker-bolt.jpg</strong>.<br>
+          Subject: spring rocker handle assembly with two round-head fasteners outlined in red.]
+        </div>
+      </div>
+    </div>
+
+    <!-- Findings -->
+    <div class="section">
+      <div class="section-title">Findings</div>
+      <div class="section-body">
+        <p><strong>F-1 &mdash; Round-head fastener selection (design):</strong>
+        Use of round-head (button-head) machine fasteners with continuous-taper protective caps is the
+        manufacturer-preferred, compliant treatment for visible attachment points on spring rocking
+        equipment. The selection is consistent with F1487-17 &sect;6.2.1 (no sharp edges/points),
+        &sect;6.4.4 (no size-increasing projection), and the CPSC #325 owner guidance to keep
+        accessible hardware flush or capped. <strong>No design change required.</strong></p>
+
+        <p><strong>F-2 &mdash; Cap seating (maintenance):</strong>
+        On the lower of the two highlighted fasteners, the protective cap appears partially displaced
+        &mdash; a thin metal rim is visible at the cap-to-panel interface. While the cap material
+        itself is not sharp, a displaced cap (i)&nbsp;may admit a 1.25&nbsp;in. projection gauge to
+        register a measurable head projection that an in-situ seated cap would not, and
+        (ii)&nbsp;exposes a metal edge that is no longer flush with the panel surface, contrary to
+        CPSC #325 &sect;5.3.5.2 and LEKA-STD-PLAY-001 &sect;5.3.</p>
+
+        <p><strong>F-3 &mdash; Thread end (rear of panel, not visible in photo):</strong>
+        F1487 &sect;6.4.3 prohibits any accessible bolt end projecting beyond the face of the nut by
+        more than two full threads. The rear (nut) side of the green panel was not visible in the
+        submitted evidence. The rear face must be inspected separately to confirm thread protrusion
+        compliance.</p>
+
+        <p><strong>F-4 &mdash; In-field projection gauge test required:</strong>
+        Definitive pass/fail under F1487 &sect;6.3 can only be rendered with the physical
+        1.25&nbsp;in., 2.0&nbsp;in., and 3.5&nbsp;in. OD projection gauges (Fig.&nbsp;A1.10) placed
+        over the head in all orientations. Photographic estimation indicates a likely pass but is
+        not binding.</p>
+      </div>
+    </div>
+
+    <!-- Risk classification -->
+    <div class="section">
+      <div class="section-title">Risk Classification (LEKA-STD-PLAY-001 &sect;13)</div>
+      <div class="section-body">
+        <ul class="tight">
+          <li><strong>F-1</strong> &mdash; Class IV (cosmetic / no risk).</li>
+          <li><strong>F-2</strong> &mdash; <strong>Class III</strong> (minor injury). Loose protective cap. Remediation within 30 days; document in maintenance log.</li>
+          <li><strong>F-3</strong> &mdash; pending; classification depends on observed thread projection at rear of panel.</li>
+          <li><strong>F-4</strong> &mdash; procedural; no risk class until physical test completed.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Remediation -->
+    <div class="section">
+      <div class="section-title">Required Remediation</div>
+      <div class="section-body">
+        <ul class="tight">
+          <li><strong>R-1 (F-2):</strong> Reseat or replace the displaced protective cap on the lower fastener of the inspected side. Use the original-equipment cap part. If the cap is degraded, replace both caps on that handle so the appearance and retention force match. Confirm cap retention with a manual pull test (cap shall not separate under reasonable hand force per the manufacturer's specification).</li>
+          <li><strong>R-2 (F-2):</strong> Inspect every spring rocker handle attachment on the same site for cap displacement; remediate any others found.</li>
+          <li><strong>R-3 (F-3):</strong> Inspect the rear (nut side) of the green panel. If any thread end projects more than two full threads beyond the face of the nut, trim flush with a hand file (chamfer end &mdash; do not generate burrs per F1487 &sect;6.2.4) <strong>or</strong> fit a domed acorn nut sized to fully enclose the thread.</li>
+          <li><strong>R-4 (F-4):</strong> Perform the F1487 &sect;6.3 projection gauge test in-field with all three gauges over every accessible fastener head; record results in the inspection log. Re-issue this review with a final pass/fail.</li>
+          <li><strong>R-5 (preventive):</strong> Add a "protective cap retention check" line item to the high-frequency (daily / weekly) inspection checklist for all Leka spring rocking equipment (LEKA-STD-PLAY-001 &sect;11).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- References -->
+    <div class="section">
+      <div class="section-title">References Consulted</div>
+      <ul class="ref-list">
+        <li><span class="ref-label">ASTM F1487-17 &sect;6.2.1, &sect;6.2.4, &sect;6.3, &sect;6.4.3, &sect;6.4.4, &sect;7.2.6.4, &sect;8.11.2, &sect;13</span> <span class="ref-value">docs/sources/2020-12-25-f1487-eoir7129-public-playground.txt</span></li>
+        <li><span class="ref-label">CPSC Publication #325 (Public Playground Safety Handbook) &sect;5.3.5.2</span> <span class="ref-value">docs/sources/guideline-handbook-for-public-playground-safety-325.txt</span></li>
+        <li><span class="ref-label">LEKA-STD-PLAY-001 v1.0 (Leka Playground Safety Standard) &sect;5.3, &sect;13</span> <span class="ref-value">leka-standards/docs/standards/leka-playground-safety-standard.md</span></li>
+        <li><span class="ref-label">NRPA CPSI Field Guide (2022)</span> <span class="ref-value">leka-standards/docs/sources/2022-09-11-cpsi-field-guide-2022.txt</span></li>
+      </ul>
+    </div>
+
+    <!-- Reviewer -->
+    <div class="inspector-block">
+      <div class="insp-field">
+        <div class="insp-label">Reviewer</div>
+        <div class="insp-value">[Reviewer Name]</div>
+      </div>
+      <div class="insp-field">
+        <div class="insp-label">CPSI Certificate No.</div>
+        <div class="insp-value">[CPSI #]</div>
+      </div>
+      <div class="insp-field">
+        <div class="insp-label">Credential</div>
+        <div class="insp-value">NRPA Certified Playground Safety Inspector</div>
+      </div>
+      <div class="insp-field">
+        <div class="insp-label">CPSI Expiration Date</div>
+        <div class="insp-value">[YYYY-MM-DD]</div>
+      </div>
+    </div>
+
+    <div class="signature-row">
+      <div class="sig-box">
+        <div class="sig-line"></div>
+        <div class="sig-label">Reviewer Signature</div>
+      </div>
+      <div class="sig-box">
+        <div class="sig-line"></div>
+        <div class="sig-label">Date Issued</div>
+      </div>
+    </div>
+
+    <div class="limitations">
+      <div class="lim-title">Limitations &amp; Disclaimer</div>
+      This compliance review is a photographic, design-level analysis only. It does not certify the
+      installed condition of the equipment and is not a substitute for the in-field projection-gauge
+      test required by ASTM F1487-17 &sect;6.3 or for a complete playground safety inspection by a
+      current NRPA Certified Playground Safety Inspector. Findings reflect the evidence submitted on
+      the issue date only. Continued compliance depends on proper maintenance, supervision, repair,
+      surfacing upkeep, and protection from wear, weather, and later modifications. This document
+      does not constitute a warranty or guarantee of future safety.
+    </div>
+
+  </div>
+
+  <div class="bottom-bar"></div>
+</div>
+
+</body>
+</html>

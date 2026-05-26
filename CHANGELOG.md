@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2026-05-26 — Compliance Review CR-2026-001 (round-head bolt, spring rocker handle)
+
+Added the first **Component Compliance Review** in the new `docs/reports/compliance/` directory, applying the Leka Studio design system to a focused 2-page A4 deliverable.
+
+- `docs/reports/compliance/CR-2026-001-round-head-bolt-spring-rocker.html` — clause-by-clause analysis of a round-head (button-head) machine fastener exposed at a spring rocker handle attachment, against **ASTM F1487-17** §6.2.1 (sharp edges), §6.2.4 (cut-off bolt end), §6.3 (protrusion / projection-gauge test), §6.4.3 (exposed bolt-end / 2-thread rule), §6.4.4 (size-increasing projection), §7.2.6.4 (hand-gripping), §8.11.2 (spring rocker handgrips), §13 (maintenance); **CPSC Pub. #325** §5.3.5.2 (owner hardware guidance); and the new `leka-standards` consolidated standard `LEKA-STD-PLAY-001 v1.0` §5.3 and §13. Verdict: **Conditional Pass** — design selection is compliant; one protective cap appears partially displaced and requires reseating; in-field projection-gauge verification required.
+- New report subfolder: `docs/reports/compliance/` for future component compliance reviews.
+- New image subfolder: `images/findings/` (gitkeep-style; report references `CR-2026-001-spring-rocker-bolt.jpg` with graceful placeholder fallback if missing).
+- All cross-references point to the canonical sources at `leka-standards/docs/sources/` (extracted PDF text) and `leka-standards/docs/standards/leka-playground-safety-standard.md`.
+
+Served via gateway at `https://gateway.goco.bz/go-documents/docs/reports/compliance/CR-2026-001-round-head-bolt-spring-rocker.html`.
+
 ## [1.3.4] - 2026-05-19 — Safety: auto-commit drift guard + machine-local gitignore patterns
 
 Ported from `data-communications` v0.5.14 (go-access-gateway v0.6.9 lineage). Closes the loop on the 2026-05-17 OneDrive-de-sync class of incident.
