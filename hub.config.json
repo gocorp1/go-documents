@@ -4,7 +4,9 @@
     "live": {
       "enabled": false
     },
-    "exclude": [],
+    "exclude": [
+      "docs/reports/compliance/CR-2026-001-round-head-bolt-spring-rocker.html"
+    ],
     "extra_links": [],
     "section_order": [
       "essentials",
