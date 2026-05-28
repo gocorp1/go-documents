@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.3] - 2026-05-28 — CR-2026-001 final: Compliant verdict + SO25-056 project reference
+
+Reviewer (Eukrit, CPSI 64835-0801) performed both in-field checks:
+1. F1487 §6.3 — projection gauge test (1.25 in. / 2.0 in. / 3.5 in. OD) on every accessible head: **Pass**
+2. F1487 §6.4.3 — rear-face thread protrusion ≤ 2 full threads beyond nut: **Pass**
+
+With both checks confirmed, the conditional pass is upgraded to an unconditional pass.
+
+- **Verdict:** `Conditional Pass` (amber) → `Compliant` (green). `class="verdict conditional"` → `class="verdict"`.
+- **Identification grid:** added `Project / Site: SO25-056 Dusit Residence`. `Review Type` updated to "Photographic + in-field verification by reviewer (CPSI)". Issue date bumped to 2026-05-28.
+- **Clause table:** four rows flipped Verify/N/A → Pass with reviewer-attested observations:
+  - §6.3 projection gauge — Pass (head does not extend beyond any gauge face)
+  - §6.4.3 exposed bolt-end — Pass (rear face inspected; ≤ 2 threads)
+  - §8.11.2 spring rocker handgrip — Pass (fasteners pass §6.3 above)
+  - LEKA-STD-PLAY-001 §5.3 — Pass (in-field gauge test passed)
+- **Findings:** F-2 / F-3 rewritten as "verified — passed".
+- **Risk classification:** F-2 / F-3 pending lines removed; F-1 / F-2 / F-3 collapsed to a single Class IV (no risk).
+- **Remediation section retitled "Preventive Maintenance":** the three remediation items collapse to a single preventive line P-1 (add the head + thread check to the monthly / quarterly inspection list per LEKA-STD-PLAY-001 §11).
+- **References:** added the project line `Project — SO25-056 Dusit Residence` at the top.
+
 ## [1.4.2] - 2026-05-28 — CR-2026-001 correction: protective cap is not required
 
 Correction after user re-review (Eukrit, CPSI 64835-0801) of v1.4.1.
