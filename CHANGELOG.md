@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.2] - 2026-05-28 — CR-2026-001 correction: protective cap is not required
+
+Correction after user re-review (Eukrit, CPSI 64835-0801) of v1.4.1.
+
+**Issue:** v1.4.0/v1.4.1 incorrectly treated the rubber overmould of the U-handle as a removable "protective cap" and flagged a Class III "cap displacement" finding (F-2). Re-reading the photo and the standard:
+
+- ASTM F1487-17 does **not** require a protective cap. A smooth, domed (round / button) head with no sharp edges and no size-increasing shoulder satisfies §6.2.1, §6.3 (projection gauge), §6.4.4 (mushroom rule) and §8.11.2 on its own.
+- CPSC #325 §5.3.5.2 lists "flush **or** covered with caps" as **parallel** acceptable options &mdash; the conjunction is "or", not "and". A smooth dome head is itself flush.
+- The black material around each bolt head is the rubber overmould of the U-handle terminating against the panel, not a separate protective cap that can slip.
+
+**Changes:**
+- Verdict body rewritten: pass is now conditional only on the in-field projection gauge test (F-2) and rear-face thread inspection (F-3). Cap language removed.
+- Clause-by-clause table: CPSC #325 §5.3.5.2 row reclassified Pass (flush dome meets the "or" branch). F1487 §13.1 maintenance row reclassified Pass (no defect observed).
+- Findings: F-2 ("cap seating") deleted as a misread. Former F-3 / F-4 renumbered to F-2 / F-3.
+- Risk classification: F-2 Class III removed. F-1 stays Class IV.
+- Remediation: R-1 / R-2 (cap reseat) removed. Former R-3 / R-4 / R-5 renumbered; R-3 reframed as a general fastener-head + thread check, not a cap-retention check.
+
 ## [1.4.1] - 2026-05-28 — CR-2026-001 final reviewer credentials + evidence photo
 
 Patch on top of v1.4.0 to make the report a finished, signable document.
