@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.1] - 2026-05-28 — CR-2026-001 final reviewer credentials + evidence photo
+
+Patch on top of v1.4.0 to make the report a finished, signable document.
+
+- `docs/reports/compliance/CR-2026-001-round-head-bolt-spring-rocker.html` — replaced `[Reviewer Name]`, `[CPSI #]`, `[YYYY-MM-DD]` placeholders with real values:
+  - Reviewer: **Eukrit Kraikosol**
+  - CPSI Certificate No.: **64835-0801**
+  - CPSI Expiration Date: **2028-08-01**
+  - (Source: `2026 Chachoengsao Claude/scraped/cpsi_certificates/F0B1BN2R1NH__PDF_output Eukrit CPSI Certificate.pdf`)
+- `images/findings/CR-2026-001-spring-rocker-bolt.jpg` — added the actual evidence photograph (393 KB JPG; converted from the original WebP). The graceful `<img onerror>` placeholder fallback now no longer triggers.
+- `gateway-pages.json` — registered the new image path with `visibility: "public"` (seeded into Firestore `ai-agents-go/gateway-access`). The HTML report and its embedded asset are both publicly viewable; both remain excluded from `docs/hub.html` per Rule 14.
+
 ## [1.4.0] - 2026-05-26 — Compliance Review CR-2026-001 (round-head bolt, spring rocker handle)
 
 Added the first **Component Compliance Review** in the new `docs/reports/compliance/` directory, applying the Leka Studio design system to a focused 2-page A4 deliverable.
